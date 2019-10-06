@@ -30,5 +30,24 @@
            $connection = $this->__construct($db_host,$db_user,$db_pswd,$db_name);            
            return $connection;
         }
+        /**
+         * delete a record from the specified table
+         * $table: name of table to delete from
+         * $field: name of field to delete using
+         * $value: value used in the where condition
+         */
+        public function delete_record($table, $field, $value){
+            $query = "DELETE FROM ? WHERE ? = ?";
+            $stmt = $this->connection->stmt_init();
+            $stmt->prepate($query);
+            $stmt->bind_param($table, $field, $value);
+            $stmt->execute();
+            if($stmt->affected_rows == 1){
+                return 0;
+            } else {
+                printf("Deletion error occured");
+                return 1;
+            }
+        }
     }
 ?>
