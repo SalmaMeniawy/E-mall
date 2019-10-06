@@ -10,7 +10,7 @@
         private function __construct($db_host ,$db_user,$db_pswd ,$db_name)
         {
             $this->connection = new mysqli($db_host,$db_user,$db_pswd,$db_name);
-
+            return $this->connection;
         }
 
         /**create public function to set the connection of the database that 
@@ -19,7 +19,8 @@
          */
         public static function create_connection($db_host,$db_user,$db_pswd,$db_name)
         {   
-            $this->__construct($db_host,$db_user,$db_pswd,$db_name);            
+           $connection = $this->__construct($db_host,$db_user,$db_pswd,$db_name);            
+           return $connection;
         }
     }
 ?>
