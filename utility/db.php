@@ -9,7 +9,7 @@
          */
         private function __construct($db_host ,$db_user,$db_pswd ,$db_name)
         {
-            $this->set_connection($db_host,$db_user,$db_pswd,$db_name);
+            $this->connection = new mysqli($db_host,$db_user,$db_pswd,$db_name)
 
         }
 
