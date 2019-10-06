@@ -50,6 +50,14 @@
             }
         }
 
+        /**
+         * update a value of a record
+         * $table: table in which the value updates resides
+         * $edit_field: field to edit its value
+         * $edit_value: new value
+         * $field: field used in where statement
+         * $value: value used in the where statement
+         */
         public function update_record($table, $edit_field, $edit_value, $field, $value){
             $query = "UPDATE ? SET ? = ? WHERE ? = ?";
             $stmt = $this->connection->stmt_init();
