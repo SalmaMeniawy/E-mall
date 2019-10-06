@@ -61,16 +61,19 @@
         }
 
 
-        // public function delete_record_with_values($table, array $field_vals){
-        //     $query = "DELETE FROM $table WHERE ";
-        //     for($i = 0; $i < count($field_vals); $i++){
-        //         $query .= $field . " = " . $value;
-        //         if($i != count($field_vals) - 1){
-        //             $query .= " and ";
-        //         }
-        //     }
-        //     $query .= ";";
-        //     $this->connection->query($query);
-        // }
+        public function delete_record_with_values($table, array $field_vals){
+            $query = "DELETE FROM $table WHERE ";
+            $counter = 0;
+            foreach ($field_vals as $field => $value) {
+                $query .= $field . " = " . $value;
+                
+                if($counter != count($field_vals) - 1){
+                    $query .= " and ";
+                }
+                $counter++;
+            }
+            $query .= ";";
+            $this->connection->query($query);
+        }
     }
 ?>
