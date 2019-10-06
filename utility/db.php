@@ -17,14 +17,9 @@
          * take the host_name ,user_name ,password and finally the name of the 
          * database that will be use in this connection
          */
-        public static function set_connection($host,$user,$pswd,$name)
+        public static function create_connection($db_host,$db_user,$db_pswd,$db_name)
         {   
-            $db_host = $host;
-            $db_user = $user;
-            $db_pswd = $pswd;
-            $db_name = $name;
-            $this->connection = new mysqli($db_host,$db_user,$db_pswd,$db_name);
-            
+            $this->__construct($db_host,$db_user,$db_pswd,$db_name);            
         }
     }
 ?>
