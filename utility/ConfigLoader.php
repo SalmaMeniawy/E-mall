@@ -1,5 +1,5 @@
 <?php
-    class Navigator{
+    class ConfigLoader{
         private static $configuration = array();
         /**
          * read the configuration file into an associative array
