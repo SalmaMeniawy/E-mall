@@ -3,8 +3,13 @@
     class DB{
         private static $connection = NULL;
 
+         /**
+         * create the constructor of our class that will set the connection by using 
+         * function set_connection and take the parameterts for connection to database
+         */
         private function __construct($db_host ,$db_user,$db_pswd ,$db_name)
         {
+            $this->set_connection($db_host,$db_user,$db_pswd,$db_name);
 
         }
 
