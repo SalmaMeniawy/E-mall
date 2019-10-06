@@ -42,12 +42,6 @@
             $stmt->prepate($query);
             $stmt->bind_param($table, $field, $value);
             $stmt->execute();
-            if($stmt->affected_rows == 1){
-                return 0;
-            } else {
-                printf("Deletion error occured");
-                return 1;
-            }
         }
 
         /**
