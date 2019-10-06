@@ -49,5 +49,12 @@
                 return 1;
             }
         }
+
+        public function update_record($table, $edit_field, $edit_value, $field, $value){
+            $query = "UPDATE ? SET ? = ? WHERE ? = ?";
+            $stmt = $this->connection->stmt_init();
+            $stmt->bind_param($table, $edit_field, $edit_value, $field, $value);
+            $stmt->execute();
+        }
     }
 ?>
