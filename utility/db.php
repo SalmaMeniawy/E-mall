@@ -60,7 +60,9 @@
             $stmt->execute();
         }
 
-
+        /**
+         * delete a record based on multiple condition
+         */
         public function delete_record_with_values($table, array $field_vals){
             $query = "DELETE FROM $table WHERE ";
             $counter = 0;
