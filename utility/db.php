@@ -7,6 +7,11 @@
         {
 
         }
+
+        /**create public function to set the connection of the database that 
+         * take the host_name ,user_name ,password and finally the name of the 
+         * database that will be use in this connection
+         */
         public static function set_connection($host,$user,$pswd,$name)
         {   
             $db_host = $host;
