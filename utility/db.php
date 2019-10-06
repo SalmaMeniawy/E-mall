@@ -58,5 +58,18 @@
             $stmt->bind_param($table, $edit_field, $edit_value, $field, $value);
             $stmt->execute();
         }
+
+
+        // public function delete_record_with_values($table, array $field_vals){
+        //     $query = "DELETE FROM $table WHERE ";
+        //     for($i = 0; $i < count($field_vals); $i++){
+        //         $query .= $field . " = " . $value;
+        //         if($i != count($field_vals) - 1){
+        //             $query .= " and ";
+        //         }
+        //     }
+        //     $query .= ";";
+        //     $this->connection->query($query);
+        // }
     }
 ?>
