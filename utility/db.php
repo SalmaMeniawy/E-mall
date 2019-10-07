@@ -91,6 +91,14 @@
             $result = $this->connection->query($query);
             return $result;
         }
-     
+        
+        /**
+         * function insert take three parameters table name , fields in the table,
+         * finally data that will be insert to the given table
+         */
+        public function insert($table , $fields ,$data)
+        {
+
+        }
     }
 ?>
