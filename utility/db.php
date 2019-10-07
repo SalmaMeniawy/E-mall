@@ -75,6 +75,7 @@
                     $query.=' , ';
                 }
             }
+            $query .="FROM $table";
             $query .=" WHERE ";
             $keys = array_keys($where);
             $count = count($where);
