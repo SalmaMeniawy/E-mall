@@ -27,7 +27,7 @@
          */
         public static function create_connection($db_host,$db_user,$db_pswd,$db_name)
         {   
-           $connection = $this->__construct($db_host,$db_user,$db_pswd,$db_name);            
+           $connection = self::__construct($db_host,$db_user,$db_pswd,$db_name);            
            return $connection;
         }
     }
