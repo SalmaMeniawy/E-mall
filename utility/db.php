@@ -35,9 +35,14 @@
         //     $query = 'SELECT * FROM $table WHERE id = $id';
         //     $result = $this->connection->query($query);
         // }
+        /**
+         * function read records it take table as parameter 
+         * to retrive all records in the given table as array
+         */
         public function read_records($table)
         {
-            
+            $query = 'SELECT * FROM $table ';
+
         }
     }
 ?>
