@@ -42,6 +42,7 @@
         public function read_records($table)
         {
             $query = 'SELECT * FROM $table ';
+            $result = $this->connection->query($query);
 
         }
     }
