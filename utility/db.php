@@ -87,6 +87,7 @@
                    $query.=" AND ";
                 }
             }
+            $result = $this->connection->query($query);
             
         }
      
