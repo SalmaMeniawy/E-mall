@@ -47,7 +47,18 @@
          */
         public function read_fields(string $table , array $fields)
         {
-
+            $query = "SELECT"; //start the query
+            for($x = 0 ;$x <sizeof($fields);$x++)
+            {
+                $query.= $fields[$x]; //add the fields to the query statment
+                if($fields[$x+1]!= NULL){
+                    $query.=' , ';
+                }
+            }
+            $query .="FROM $table";//finally add the table name to the query
+            $result = $this->connection->query($query);
+        
+            return $result;      
         }
 
     }
