@@ -60,6 +60,15 @@
         
             return $result;      
         }
+        /**
+         * function read that take three parameters the table name
+         * , array of specific fields and finally array for condetion 
+         *  statment
+         */
+        public function read(string $table , array $fields , array $where)
+        {
 
+        }
+     
     }
 ?>
