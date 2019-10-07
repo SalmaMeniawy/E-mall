@@ -43,6 +43,7 @@
         {
             $query = 'SELECT * FROM $table ';
             $result = $this->connection->query($query);
+            return $result;
 
         }
     }
