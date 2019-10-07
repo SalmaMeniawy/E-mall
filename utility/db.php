@@ -31,7 +31,7 @@
            return $connection;
         }
         /**
-         * function read records it take table as parameter 
+         * function read all records it take table as parameter 
          * to retrive all records in the given table as array
          */
         public function read_all_records(string $table)
@@ -39,6 +39,14 @@
             $query = 'SELECT * FROM $table ';
             $result = $this->connection->query($query);
             return $result;
+
+        }
+        /**
+         * function that take table name and array which contain fields
+         * names to get them from all records in a given table name
+         */
+        public function read_fields(string $table , array $fields)
+        {
 
         }
 
