@@ -30,9 +30,13 @@
            $connection = self::__construct($db_host,$db_user,$db_pswd,$db_name);            
            return $connection;
         }
-        public static function read_record_by_ID($table ,$id)
+        // public function read_record_by_ID($table ,$id)
+        // {
+        //     $query = 'SELECT * FROM $table WHERE id = $id';
+        //     $result = $this->connection->query($query);
+        // }
+        public function read_records($table)
         {
-            $query = 'SELECT * FROM $table WHERE id = $id';
             
         }
     }
