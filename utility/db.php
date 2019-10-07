@@ -67,7 +67,27 @@
          */
         public function read(string $table , array $fields , array $where)
         {
-
+            $query = "SELECT "; //start the query
+            for($x = 0 ;$x <sizeof($fields);$x++)
+            {
+                $query.= $fields[$x]; //add the fields to the query statment
+                if($fields[$x+1]!= NULL){
+                    $query.=' , ';
+                }
+            }
+            $query .=" WHERE ";
+            $keys = array_keys($where);
+            $count = count($where);
+            for($i = 0 ;$i <$count;$i++) // add the condetion values to query statment
+            {
+                $add = $where[$keys[$i]];
+                $query .= "$keys[$i] = $add";
+                if($where[$keys[$i+1]]!= NULL)
+                {
+                   $query.=" AND ";
+                }
+            }
+            
         }
      
     }
