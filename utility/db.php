@@ -30,11 +30,6 @@
            $connection = self::__construct($db_host,$db_user,$db_pswd,$db_name);            
            return $connection;
         }
-        // public function read_record_by_ID($table ,$id)
-        // {
-        //     $query = 'SELECT * FROM $table WHERE id = $id';
-        //     $result = $this->connection->query($query);
-        // }
         /**
          * function read records it take table as parameter 
          * to retrive all records in the given table as array
@@ -46,5 +41,6 @@
             return $result;
 
         }
+
     }
 ?>
