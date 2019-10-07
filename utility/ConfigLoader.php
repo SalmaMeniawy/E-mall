@@ -19,7 +19,7 @@
             $settings_array = file($config);
             foreach ($settings_array as $setting) {
                 list($key, $value) = explode("=", $setting);
-                $this->configuration[$key] = $value;
+                $this->configuration[trim($key)] = trim($value);
             }
 
             fclose($config);
