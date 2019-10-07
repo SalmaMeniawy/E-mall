@@ -34,7 +34,7 @@
          * function read records it take table as parameter 
          * to retrive all records in the given table as array
          */
-        public function read_records(string $table)
+        public function read_all_records(string $table)
         {
             $query = 'SELECT * FROM $table ';
             $result = $this->connection->query($query);
