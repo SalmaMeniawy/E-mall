@@ -141,6 +141,20 @@
             }
             return $result;
         }
+        /**
+         * create function def_stat that take array 
+         * this function call method define_type and return 
+         * string contain a symbols that represent the type
+         */
+        public  function def_stat( array $variable)
+        {
+            $type_stmt = NULL;
+            foreach($variable as $var)
+            {
+                $type_stmt .= define_type($var);
+            }
+            return $type_stmt;
+        }
 
     }
 ?>
