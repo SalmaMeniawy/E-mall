@@ -98,7 +98,7 @@
          */
         public function insert($table , $fields ,$data)
         {
-
+            
         }
     }
 ?>
