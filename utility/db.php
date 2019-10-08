@@ -115,6 +115,7 @@
                $stmt->prepare($query);
 
 
+
             }else{
                 error_log("check the length of fields and inserted data");
 
@@ -135,8 +136,11 @@
                                 break;
                 case "integer" : $result = "d";
                                 break; 
+                case "double" : $result = "d";
+                                break;
             }
             return $result;
         }
+
     }
 ?>
