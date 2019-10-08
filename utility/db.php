@@ -98,7 +98,27 @@
          */
         public function insert($table , $fields ,$data)
         {
-            
+            $query = "INSERT INTO $table SET "; //start the query 
+            if(count($fields) == count($data)) //check the length of arrays fields and data
+            {
+                $query = "INSERT INTO $table SET ";
+                for($x=0 ; $x< sizeof($fields);$x ++)
+                {
+                    $query .= "$fields[$x] = ?";
+                    if($fields[$x + 1] !== NULL)
+                    {
+                        $query .= ", ";
+                    }
+                }
+               
+               $stmt = $this->connection->stmt_init(); //initiate stmt object
+               $stmt->prepare($query);
+
+
+            }else{
+                error_log("check the length of fields and inserted data");
+
+            }
         }
     }
 ?>
