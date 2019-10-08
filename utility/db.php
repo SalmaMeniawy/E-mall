@@ -120,5 +120,23 @@
 
             }
         }
+        /**
+         * define function define type which take variable and return 
+         * type in sympol string that will be used in another method like
+         * "bind_param" method
+         */
+        public  function define_type($variable)
+        {
+            $result = NULL ;
+            $type = gettype($variable);
+            switch ($type)
+            {
+                case "string" : $result = "s";
+                                break;
+                case "integer" : $result = "d";
+                                break; 
+            }
+            return $result;
+        }
     }
 ?>
