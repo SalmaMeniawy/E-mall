@@ -47,7 +47,7 @@
          */
         public function read_fields(string $table , array $fields)
         {
-            $query = "SELECT"; //start the query
+            $query = "SELECT "; //start the query
             for($x = 0 ;$x <sizeof($fields);$x++)
             {
                 $query.= $fields[$x]; //add the fields to the query statment
@@ -55,7 +55,7 @@
                     $query.=' , ';
                 }
             }
-            $query .="FROM $table";//finally add the table name to the query
+            $query .=" FROM $table";//finally add the table name to the query
             $result = $this->connection->query($query);
         
             return $result;      
@@ -113,8 +113,19 @@
                
                $stmt = $this->connection->stmt_init(); //initiate stmt object
                $stmt->prepare($query);
-
-
+               $data_type = def_stat($data);//return type of data in symbols
+               $bind_param_stat = NULL;
+               for($i=0 ; $i< sizeof($data);$i ++)
+               {
+                   $bind_param_stat .= $data[$i] ;
+                   if($data[$i + 1] !== NULL)
+                   {
+                       $bind_param_stat .= ", ";
+                   }   
+               }
+               $stmt->bind_param($data_type , $bind_param_stat);
+               $stmt->execute();
+               $stmt->close();
 
             }else{
                 error_log("check the length of fields and inserted data");
