@@ -1,4 +1,6 @@
 <?php
+
+    namespace configLoader;
     class ConfigLoader{
         private static $configuration = null;
         /**
