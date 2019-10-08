@@ -30,5 +30,75 @@
            $connection = self::__construct($db_host,$db_user,$db_pswd,$db_name);            
            return $connection;
         }
+        /**
+         * function read all records it take table as parameter 
+         * to retrive all records in the given table as array
+         */
+        public function read_all_records(string $table)
+        {
+            $query = 'SELECT * FROM $table ';
+            $result = $this->connection->query($query);
+            return $result;
+
+        }
+        /**
+         * function that take table name and array which contain fields
+         * names to get them from all records in a given table name
+         */
+        public function read_fields(string $table , array $fields)
+        {
+            $query = "SELECT"; //start the query
+            for($x = 0 ;$x <sizeof($fields);$x++)
+            {
+                $query.= $fields[$x]; //add the fields to the query statment
+                if($fields[$x+1]!= NULL){
+                    $query.=' , ';
+                }
+            }
+            $query .="FROM $table";//finally add the table name to the query
+            $result = $this->connection->query($query);
+        
+            return $result;      
+        }
+        /**
+         * function read that take three parameters the table name
+         * , array of specific fields and finally array for condetion 
+         *  statment
+         */
+        public function read(string $table , array $fields , array $where)
+        {
+            $query = "SELECT "; //start the query
+            for($x = 0 ;$x <sizeof($fields);$x++)
+            {
+                $query.= $fields[$x]; //add the fields to the query statment
+                if($fields[$x+1]!= NULL){
+                    $query.=' , ';
+                }
+            }
+            $query .="FROM $table";
+            $query .=" WHERE ";
+            $keys = array_keys($where);
+            $count = count($where);
+            for($i = 0 ;$i <$count;$i++) // add the condetion values to query statment
+            {
+                $add = $where[$keys[$i]];
+                $query .= "$keys[$i] = $add";
+                if($where[$keys[$i+1]]!= NULL)
+                {
+                   $query.=" AND ";
+                }
+            }
+            $result = $this->connection->query($query);
+            return $result;
+        }
+        
+        /**
+         * function insert take three parameters table name , fields in the table,
+         * finally data that will be insert to the given table
+         */
+        public function insert($table , $fields ,$data)
+        {
+            
+        }
     }
 ?>
