@@ -141,40 +141,6 @@
             $result = $this->connection->query($query);
             return $result; 
         }
-        /**
-         * define function define type which take variable and return 
-         * type in sympol string that will be used in another method like
-         * "bind_param" method
-         */
-        public  function define_type($variable)
-        {
-            $result = NULL ;
-            $type = gettype($variable);
-            switch ($type)
-            {
-                case "string" : $result = "s";
-                                break;
-                case "integer" : $result = "d";
-                                break; 
-                case "double" : $result = "d";
-                                break;
-            }
-            return $result;
-        }
-        /**
-         * create function def_stat that take array 
-         * this function call method define_type and return 
-         * string contain a symbols that represent the type
-         */
-        public  function def_stat( array $variable)
-        {
-            $type_stmt = NULL;
-            foreach($variable as $var)
-            {
-                $type_stmt .= define_type($var);
-            }
-            return $type_stmt;
-        }
-
+       
     }
 ?>
