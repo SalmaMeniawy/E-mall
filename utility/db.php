@@ -98,39 +98,48 @@
          */
         public function insert($table , $fields ,$data)
         {
-            $query = "INSERT INTO $table SET "; //start the query 
-            if(count($fields) == count($data)) //check the length of arrays fields and data
+            $query = "INSERT INTO $table ( "; //start the query 
+            if(isset($fields) && isset($data) && count($fields) == count($data))
             {
-                $query = "INSERT INTO $table SET ";
-                for($x=0 ; $x< sizeof($fields);$x ++)
-                {
-                    $query .= "$fields[$x] = ?";
-                    if($fields[$x + 1] !== NULL)
+                foreach($fields as $field)
+                {   
+                    $next = next($fields);
+                    $query .= " {$field} ";
+                    if(isset($next) && !empty($next))
                     {
-                        $query .= ", ";
+                        $query .= " , ";
+                    }else{
+                        $query .= " ) ";
                     }
                 }
+                $query .= "VALUES ( ";
+                foreach($data as $value)
+                {
+                    $next = next($data);
+                    if(is_string($value))
+                    {
+                        $query .= " '$value' ";
+                        if(isset($next) && !empty($next))
+                        {
+                            $query .= " ,";
+                        }else{
+                            $query .= " )";
+                        }
+                    }elseif( is_int($value) || is_double($value) || is_float($value))
+                    {
+                        $query .= " $value ";
+                        if(isset($next) && !empty($next))
+                        {
+                            $query .= " ,";
+                        }else{
+                            $query .= " )";
+                        }
+                    }
+                }  
                
-               $stmt = $this->connection->stmt_init(); //initiate stmt object
-               $stmt->prepare($query);
-               $data_type = def_stat($data);//return type of data in symbols
-               $bind_param_stat = NULL;
-               for($i=0 ; $i< sizeof($data);$i ++)
-               {
-                   $bind_param_stat .= $data[$i] ;
-                   if($data[$i + 1] !== NULL)
-                   {
-                       $bind_param_stat .= ", ";
-                   }   
-               }
-               $stmt->bind_param($data_type , $bind_param_stat);
-               $stmt->execute();
-               $stmt->close();
-
-            }else{
-                error_log("check the length of fields and inserted data");
-
             }
+            $result = $this->connection->query($query);
+            return $result; 
         }
         /**
          * define function define type which take variable and return 
