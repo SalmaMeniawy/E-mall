@@ -141,6 +141,52 @@
             $result = $this->connection->query($query);
             return $result; 
         }
-       
+        /**
+         * delete a record from the specified table
+         * $table: name of table to delete from
+         * $field: name of field to delete using
+         * $value: value used in the where condition
+         */
+        public function delete_record($table, $field, $value){
+            $query = "DELETE FROM ? WHERE ? = ?";
+            $stmt = $this->connection->stmt_init();
+            $stmt->prepate($query);
+            $stmt->bind_param($table, $field, $value);
+            $stmt->execute();
+        }
+
+        /**
+         * update a value of a record
+         * $table: table in which the value updates resides
+         * $edit_field: field to edit its value
+         * $edit_value: new value
+         * $field: field used in where statement
+         * $value: value used in the where statement
+         */
+        public function update_record($table, $edit_field, $edit_value, $field, $value){
+            $query = "UPDATE ? SET ? = ? WHERE ? = ?";
+            $stmt = $this->connection->stmt_init();
+            $stmt->prepare($query);
+            $stmt->bind_param($table, $edit_field, $edit_value, $field, $value);
+            $stmt->execute();
+        }
+
+        /**
+         * delete a record based on multiple condition
+         */
+        public function delete_record_with_values($table, array $field_vals){
+            $query = "DELETE FROM $table WHERE ";
+            $counter = 0;
+            foreach ($field_vals as $field => $value) {
+                $query .= $field . " = " . $value;
+                
+                if($counter != count($field_vals) - 1){
+                    $query .= " and ";
+                }
+                $counter++;
+            }
+            $query .= ";";
+            $this->connection->query($query);
+        }
     }
 ?>
