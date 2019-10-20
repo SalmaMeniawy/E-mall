@@ -3,5 +3,4 @@
     use smarty\templateEngine\TemplateEngine;
 
     $smarty = new TemplateEngine();
-
     print_r($smarty);
