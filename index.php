@@ -1,5 +1,7 @@
 <?php
     require_once __DIR__ . "/vendor/autoload.php";
-    use smarty\TemplateEngine;
+    use smarty\templateEngine\TemplateEngine;
 
-    $smarty = new Smarty();
+    $smarty = TemplateEngine::get_smarty();
+
+    print_r($smarty);

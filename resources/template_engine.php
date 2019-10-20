@@ -1,6 +1,6 @@
 <?php    
 
-    namespace smarty\TemplateEngine;
+    namespace smarty\templateEngine;
 
     class TemplateEngine{
         private static $engine = null;
@@ -16,6 +16,6 @@
         }
 
         public static function get_smarty(){
-
+            return $this->__construct();
         }
     }
