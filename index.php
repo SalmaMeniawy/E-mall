@@ -1,7 +1,7 @@
 <?php
-    // require_once __DIR__ . "/vendor/autoload.php";
+    require_once __DIR__ . "/global_loader.php";
     use smarty\templateEngine\TemplateEngine;
 
-    $smarty = TemplateEngine::get_smarty();
+    $smarty = new TemplateEngine();
 
     print_r($smarty);
