@@ -1,4 +1,7 @@
 <?php    
+
+    namespace smarty\TemplateEngine;
+    
     class TemplateEngine{
         private static $engine = null;
 
