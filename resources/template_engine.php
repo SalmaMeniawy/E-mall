@@ -13,12 +13,12 @@
         public static function get_smarty(){
             if(is_null(self::$engine)){
                 self::$engine = new Smarty();
-                self::$engine->template_dir = __DIR__ ."/resources/views";
-                self::$engine->compile_dir = __DIR__ ."/resources/tmp";
-                // self::$engine->setTemplateDir(config("TemplateDir"));
-                // self::$engine->setCompileDir(config("cmpTemplateDir"));
+                self::$engine->setTemplateDir(config("TemplateDir"));
+                self::$engine->setCompileDir(config("cmpTemplateDir"));
+                self::$engine->setConfigDir(config("configDir"));
+                self::$engine->setCacheDir(config("cacheDir"));
             }
-            // print_r(self::$engine);
+
             return self::$engine;
         }
     }
