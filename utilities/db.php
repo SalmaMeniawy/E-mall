@@ -56,7 +56,7 @@
                 }
             }
             $query .=" FROM $table";//finally add the table name to the query
-            $result = $this->connection->query($query);
+            $result = self::$connection->query($query);
         
             return $result;      
         }
