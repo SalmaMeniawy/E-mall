@@ -10,15 +10,15 @@
         private function __construct($db_host ,$db_user,$db_pswd ,$db_name)
         {
             // first check if there's an object already loaded in memory..
-            if($this->connection == NULL){
-                $this->connection = new mysqli($db_host,$db_user,$db_pswd,$db_name);
-                if($this->connection->connect_errno)
+            if(self::$connection == NULL){
+                self::$connection = new mysqli($db_host,$db_user,$db_pswd,$db_name);
+                if(self::$connection->connect_errno)
                 {
-                    error_log(print_r("Unable to connect to the database:{$this->connection->connect_error}"));
+                    error_log(print_r("Unable to connect to the database:"{self::$connection->connect_error}));
                 }
             }
             //return the existing object anyway (newly created or created before this function call).
-            return $this->connection;
+            return self::$connection;
         }
 
         /**create public function to set the connection of the database that 
@@ -27,7 +27,7 @@
          */
         public static function create_connection($db_host,$db_user,$db_pswd,$db_name)
         {   
-           $connection = self::__construct($db_host,$db_user,$db_pswd,$db_name);            
+           $connection = new DB($db_host,$db_user,$db_pswd,$db_name);            
            return $connection;
         }
         /**
@@ -36,8 +36,8 @@
          */
         public function read_all_records(string $table)
         {
-            $query = 'SELECT * FROM $table ';
-            $result = $this->connection->query($query);
+            $query = "SELECT * FROM $table ";
+            $result = self::$connection->query($query);
             return $result;
 
         }
@@ -71,7 +71,7 @@
             for($x = 0 ;$x <sizeof($fields);$x++)
             {
                 $query.= $fields[$x]; //add the fields to the query statment
-                if($fields[$x+1]!= NULL){
+                if($fields[$x+1]!= null){
                     $query.=' , ';
                 }
             }
