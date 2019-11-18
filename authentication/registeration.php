@@ -35,19 +35,30 @@ class Registration{
     public function username_available_before(){
          $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
          $username =$this-> __get('username');
-         echo $username;
          $result = $database->read('users',['name'],[" name = '$username'"]);
-        var_dump($result);
-
          if($result->num_rows == 1){
              return 1;
          }else{
              return 0;
          }
     }
+    public function email_available_before(){
+        $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
+        $email = $this->__get('email');
+        echo "<br>";
+        echo $email;
+        $result =$database->read('users',['email'],["email = '$email'"]);
+        // var_dump($result);
+        if($result->num_rows == 1){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    
 }
 
-// <?php $_SERVER['PHP_SELF']
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,18 +88,15 @@ class Registration{
         </form>
     </body>
 <?php
-// echo "Hello hiiiiiiiiiiiii";
    if(isset($_POST['username']) && !is_null($_POST['username'])){
-    // echo "Hello hiiiiiiiiiiiii";
-    // echo "<br>";
-
     $regist = new Registration($_POST['username'],$_POST['email'],$_POST['password'],$_POST['dob'],$_POST['country']);
     $resultForUsername =$regist->username_available_before();
-    var_dump($resultForUsername);
-    if($resultForUsername == 1){
+    $resultForEmail = $regist->email_available_before();
+    // var_dump($result);
+    // if($result == 1){
     //     echo "<br>";
-        echo "it is available before";
-    }
+        // echo "it is available before";
+    // }
    }
     // $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
     // // $result = $database->read_fields('users',['name']);
