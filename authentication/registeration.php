@@ -59,9 +59,57 @@ class Registration{
             return 0;
         }
     }
-    
-}
+    public function add_new_user(int $resultForUsername , int $resultForEmail){
+        $username = $this->__get('username');
+        $email = $this->__get('email');
+        $password = $this->__get('password');
+        $dobBeforeEdite = $this->__get('dob');
+        $dob = date('Y-m-d',strtotime($dobBeforeEdite));
+        echo $dob;
+        $country = $this->__get('country');
+        if($resultForEmail == 0 && $resultForUsername == 0){
+            $check = $this->check_user_data();
+            if($check  == 1){
+                $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
+                $result = $database->insert('users',['name','email','passwd','dateOfBirth','country'],["$username","$email","$password","$dob","$country"]);
+                // var_dump($result);
+                    if($result ){
+                        echo "<br>";
+                        
+                        echo "the data inserted Successfully ";
+                        return 1;
+                    }else{
+                        echo "<br>";
+                        echo "the data mda5aletch";
+                        return 0;
+                    }
+            }
+        }
+    }
+    public function check_user_data(){
+        $username = $this->__get('username');
+        $email = $this->__get('email');
+        $password = $this->__get('password');
+        $dobBeforeEdite = $this->__get('dob');
+        $dob = date('Y-m-d',strtotime($dobBeforeEdite));
+        $country = $this->__get('country');
+        echo "Hello from check method";
+        if(!empty($username)&& !empty($email)&& !empty($password) && !empty($dob)&& !empty($country)
+            && !is_null($username)&& !is_null($email) && !is_null($password)&& !is_null($dob)
+            && !is_null($country))
+            {
+                echo "$username + $email + $password +$dob +$country";
+                return 1;
 
+            }else{
+            return 0;
+            }
+
+        
+    }
+    
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -96,6 +144,13 @@ class Registration{
     $regist = new Registration($_POST['username'],$_POST['email'],$_POST['password'],$_POST['dob'],$_POST['country']);
     $resultForUsername =$regist->username_available_before();
     $resultForEmail = $regist->email_available_before();
+    echo "<br>";
+    echo $resultForEmail ;
+    echo $resultForUsername;
+    $addResult = $regist->add_new_user($resultForUsername,$resultForEmail);
+    // echo date("Y"-"m"-"d");
+    // var_dump($addResult);
+    //////////////////////////////////////////////
     // var_dump($result);
     // if($result == 1){
     //     echo "<br>";
@@ -103,6 +158,7 @@ class Registration{
     // }
    }
     // $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
+    // $result2 = $database->insert('users',['name','email','passwd','dateOfBirth','country'],['ali','ssqw@gmail.com','rere','1999-10-5','egypt-alex']);
     // // $result = $database->read_fields('users',['name']);
     // $result1 = $database->read('users',['name'],[" name = 'heba'"]);
     // // $result = $database->read_all_records('users');
