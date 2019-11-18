@@ -42,13 +42,17 @@ class Registration{
              return 0;
          }
     }
+    /**
+     * function email_available_before that does not take any parameters 
+     * check if the email used before in the database if that return 1 
+     * if it is't used before return 0
+     */
     public function email_available_before(){
         $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
         $email = $this->__get('email');
         echo "<br>";
         echo $email;
         $result =$database->read('users',['email'],["email = '$email'"]);
-        // var_dump($result);
         if($result->num_rows == 1){
             return 1;
         }else{
