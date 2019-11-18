@@ -148,40 +148,11 @@ class Registration{
     echo $resultForEmail ;
     echo $resultForUsername;
     $addResult = $regist->add_new_user($resultForUsername,$resultForEmail);
-    // echo date("Y"-"m"-"d");
-    // var_dump($addResult);
-    //////////////////////////////////////////////
-    // var_dump($result);
-    // if($result == 1){
-    //     echo "<br>";
-        // echo "it is available before";
-    // }
+   
    }
     // $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
     // $result2 = $database->insert('users',['name','email','passwd','dateOfBirth','country'],['ali','ssqw@gmail.com','rere','1999-10-5','egypt-alex']);
     // // $result = $database->read_fields('users',['name']);
     // $result1 = $database->read('users',['name'],[" name = 'heba'"]);
-    // // $result = $database->read_all_records('users');
-    // // var_dump($result);
-    // var_dump($result1);
-    // if($result1->num_rows == 1){
-    //     echo "<br>";
-
-    //     echo "mwgoooooood";
-    //     echo "<br>";
-
-    // }else{
-    //     echo "<br>";
-
-    //     echo "mesh mwgoooooooooooooooooood";
-    // }
-    // if(empty($result1) && is_null($result1)){
-    //     echo "<br>";
-    //     echo "is Empty";
-        
-    // }
-    // echo "<br>";
-    // if($result1->current_field == 1){
-    // var_dump ($result1->current_field);
-    // }
+    
 ?>
