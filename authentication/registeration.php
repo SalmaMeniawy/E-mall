@@ -20,8 +20,11 @@ class Registration{
         
     }
     
-    
-    public function __get($var_name){
+    /**
+     * get method one from magic functions it related to Registration class
+     * to get it is properties by take @param String $var_name
+     */
+    public function __get(String $var_name){
         if(array_key_exists($var_name,$this->data)){
             return $this->data[$var_name];
         }
@@ -98,7 +101,7 @@ class Registration{
             && !is_null($username)&& !is_null($email) && !is_null($password)&& !is_null($dob)
             && !is_null($country))
             {
-                echo "$username + $email + $password +$dob +$country";
+               
                 return 1;
 
             }else{
@@ -135,18 +138,16 @@ class Registration{
                 <input type="text" name="country" placeholder="Country" require>
             </div>
             <div>
-                <button type="submit" >Sign Up</button>
+                <button type="submit" name="submit" >Sign Up</button>
             </div>
         </form>
     </body>
 <?php
-   if(isset($_POST['username']) && !is_null($_POST['username'])){
+//    if(isset($_POST['username']) && !is_null($_POST['username'])){
+    if(isset($_POST['submit'])){
     $regist = new Registration($_POST['username'],$_POST['email'],$_POST['password'],$_POST['dob'],$_POST['country']);
     $resultForUsername =$regist->username_available_before();
     $resultForEmail = $regist->email_available_before();
-    echo "<br>";
-    echo $resultForEmail ;
-    echo $resultForUsername;
     $addResult = $regist->add_new_user($resultForUsername,$resultForEmail);
    
    }
