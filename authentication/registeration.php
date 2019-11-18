@@ -1,7 +1,7 @@
 <?php
 
 use function helpers\config;
-// $_POST = [];
+
 // require_once('../global_loader.php');
 require_once('../utilities/db.php');
 require_once('../utilities/helpers.php');
@@ -75,7 +75,6 @@ class Registration{
             if($check  == 1){
                 $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
                 $result = $database->insert('users',['name','email','passwd','dateOfBirth','country'],["$username","$email","$password","$dob","$country"]);
-                // var_dump($result);
                     if($result ){
                         echo "<br>";
                         
@@ -143,7 +142,7 @@ class Registration{
         </form>
     </body>
 <?php
-//    if(isset($_POST['username']) && !is_null($_POST['username'])){
+
     if(isset($_POST['submit'])){
     $regist = new Registration($_POST['username'],$_POST['email'],$_POST['password'],$_POST['dob'],$_POST['country']);
     $resultForUsername =$regist->username_available_before();
@@ -151,9 +150,5 @@ class Registration{
     $addResult = $regist->add_new_user($resultForUsername,$resultForEmail);
    
    }
-    // $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
-    // $result2 = $database->insert('users',['name','email','passwd','dateOfBirth','country'],['ali','ssqw@gmail.com','rere','1999-10-5','egypt-alex']);
-    // // $result = $database->read_fields('users',['name']);
-    // $result1 = $database->read('users',['name'],[" name = 'heba'"]);
     
 ?>
