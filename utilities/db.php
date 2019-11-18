@@ -99,7 +99,7 @@
         public function insert($table , $fields ,$data)
         {
             $query = "INSERT INTO $table ( "; //start the query 
-            if(isset($fields) && isset($data) && count($fields) == count($data))
+            if(isset($fields) && isset($data) )
             {
                 foreach($fields as $field)
                 {   
@@ -138,7 +138,9 @@
                 }  
                
             }
-            $result = $this->connection->query($query);
+            // echo "<br>";
+            // echo $query;
+            $result = self::$connection->query($query);
             return $result; 
         }
         /**
