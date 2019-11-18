@@ -68,27 +68,27 @@
         public function read(string $table , array $fields , array $where)
         {
             $query = "SELECT "; //start the query
-            for($x = 0 ;$x <sizeof($fields);$x++)
-            {
-                $query.= $fields[$x]; //add the fields to the query statment
-                if($fields[$x+1]!= null){
-                    $query.=' , ';
+            if(isset($where) && isset($fields)){
+                foreach($fields as $field){
+                $next = next($fields);
+                $query .= "{$field}";
+                    if(isset($next) && !empty($next)){
+                        $query .= " , ";
+                    }
+                }
+                $query .= " FROM $table WHERE ";
+                foreach($where as $data){
+                    $query .= "{$data}";
+                    $next = next($where);
+                    if(isset($next) && !empty($next)){
+                        $query.=" AND ";
+
+                    }
                 }
             }
-            $query .="FROM $table";
-            $query .=" WHERE ";
-            $keys = array_keys($where);
-            $count = count($where);
-            for($i = 0 ;$i <$count;$i++) // add the condetion values to query statment
-            {
-                $add = $where[$keys[$i]];
-                $query .= "$keys[$i] = $add";
-                if($where[$keys[$i+1]]!= NULL)
-                {
-                   $query.=" AND ";
-                }
-            }
-            $result = $this->connection->query($query);
+            
+            $result = self::$connection->query($query);
+            
             return $result;
         }
         
