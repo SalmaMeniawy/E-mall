@@ -65,7 +65,7 @@ class Registration{
     public function add_new_user(int $resultForUsername , int $resultForEmail){
         $username = $this->__get('username');
         $email = $this->__get('email');
-        $password = $this->__get('password');
+        $password = $this->hash_user_password();
         $dobBeforeEdite = $this->__get('dob');
         $dob = date('Y-m-d',strtotime($dobBeforeEdite));
         // echo $dob;
@@ -132,10 +132,14 @@ class Registration{
         if($check_length == 1 && $check_numbers == true && $checl_letters == true){
             echo "<br><h1> the length return $check_length AND contain number $check_numbers </h1>  <br>";  
 
-            return $this->__get('password');
+            $passwordBeforeHash = $this->__get('password');
+        
+            return $passwordBeforeHash;
+            
 
         }else {
             echo "<br> It is not Valid Password <br>";
+            return false;
         }
     }
     /**
@@ -146,14 +150,22 @@ class Registration{
     public function check_email(){
         $emailBeforeCheck = $this->__get('email');
         $email = filter_var($emailBeforeCheck ,FILTER_VALIDATE_EMAIL);
-        echo "Hello from check email method <br>";
-        echo "<br>$email </br>";
+        // echo "Hello from check email method <br>";
+        // echo "<br>$email </br>";
         return $email;
     }
+    public function hash_user_password(){
+        $passwordBeforeHash = $this->check_password();
+         return password_hash($passwordBeforeHash ,PASSWORD_DEFAULT);
+
+    }
+    /**
+     * check_user_data method for checking the user data
+     */
     public function check_user_data(){
         $username = $this->__get('username');
         $email = $this->check_email();
-        echo $email;
+        // echo $email;
         $password = $this->check_password();
         $dobBeforeEdite = $this->__get('dob');
         $dob = date('Y-m-d',strtotime($dobBeforeEdite));
