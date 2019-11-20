@@ -140,7 +140,7 @@ class Registration{
                 <input type="text" name="username" placeholder="User Name" require>
             </div>
             <div>
-                <input type="text" name="email"placeholder="Email" require >
+                <input type="email" name="email"placeholder="Email" require >
             </div>
             <div>
                 <input type="password" name="password" placeholder="password" require>
