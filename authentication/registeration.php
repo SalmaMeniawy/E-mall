@@ -116,20 +116,20 @@ class Registration{
         echo "<br> hello from check numbers";
         return $result;
     }
-    // public function check_containing_letters_in_password(){
-    //     $passwordBeforeCheck = $this->__get('password');
-    //     $result = preg_match("[^a-zA-Z\d]",$passwordBeforeCheck);
-    //     echo "<br> hello from check letters <br>";
-    //     return $result;
-    // }
+    public function check_containing_letters_in_password(){
+        $passwordBeforeCheck = $this->__get('password');
+        $result = preg_match("^[a-zA-Z\d]^",$passwordBeforeCheck);
+        echo "<br> hello from check letters <br>";
+        return $result;
+    }
     public function check_password(){
         $check_length = $this->check_length_of_password();
-        // $checl_letters = $this->check_containing_letters_in_password();
+        $checl_letters = $this->check_containing_letters_in_password();
         $check_numbers = $this->check_containing_number_in_password();
           
         echo "<br>";
         // echo "$check_numbers AND $checl_letters <br>";
-        if($check_length == 1 && $check_numbers == true ){
+        if($check_length == 1 && $check_numbers == true && $checl_letters == true){
             echo "<br><h1> the length return $check_length AND contain number $check_numbers </h1>  <br>";  
 
             return $this->__get('password');
@@ -155,9 +155,6 @@ class Registration{
         $email = $this->check_email();
         echo $email;
         $password = $this->check_password();
-        // $password = $this->__get('password');
-        // password_hash($password,PASSWORD_DEFAULT);
-        // echo $password;
         $dobBeforeEdite = $this->__get('dob');
         $dob = date('Y-m-d',strtotime($dobBeforeEdite));
         $country = $this->__get('country');
