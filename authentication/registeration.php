@@ -103,6 +103,15 @@ class Registration{
         }
     }
     /**
+     * check_containing_number_in_password method check if the password contain 
+     * numbers and return int 
+     */
+    public function check_containing_number_in_password(){
+        $passwordBeforeCheck = $this->__get('password'); 
+        $result = preg_match("^[0-9]+$" ,$passwordBeforeCheck);
+        return $result;
+    }
+    /**
      * method check_email it does n't take any parameter 
      * it get the email by using the getter in registration class
      * and check on it and return the email 
