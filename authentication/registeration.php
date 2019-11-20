@@ -89,6 +89,20 @@ class Registration{
         }
     }
     /**
+     * check_length_of_passsword method that check the length of the password
+     * if it is like the requirment or not 
+     * return 1 if it is like the requirment and 0 if not
+     */
+    public function check_length_of_password(){
+        $emailBeforeCheck = $this->__get('password');
+        if(count($emailBeforeCheck) == 8)
+        {
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    /**
      * method check_email it does n't take any parameter 
      * it get the email by using the getter in registration class
      * and check on it and return the email 
