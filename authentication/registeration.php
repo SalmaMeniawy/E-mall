@@ -110,12 +110,12 @@ class Registration{
      * check_containing_number_in_password method check if the password contain 
      * numbers and return int 
      */
-    // public function check_containing_number_in_password(){
-    //     $passwordBeforeCheck = $this->__get('password'); 
-    //     $result = preg_match("^[0-9]+$" ,$passwordBeforeCheck);
-    //     echo "<br> hello from check numbers";
-    //     return $result;
-    // }
+    public function check_containing_number_in_password(){
+        $passwordBeforeCheck = $this->__get('password'); 
+        $result = preg_match("^[0-9]+$^" ,$passwordBeforeCheck);
+        echo "<br> hello from check numbers";
+        return $result;
+    }
     // public function check_containing_letters_in_password(){
     //     $passwordBeforeCheck = $this->__get('password');
     //     $result = preg_match("[^a-zA-Z\d]",$passwordBeforeCheck);
@@ -125,12 +125,15 @@ class Registration{
     public function check_password(){
         $check_length = $this->check_length_of_password();
         // $checl_letters = $this->check_containing_letters_in_password();
-        // $check_numbers = $this->check_containing_number_in_password();
-        echo $check_length ;
+        $check_numbers = $this->check_containing_number_in_password();
+          
         echo "<br>";
         // echo "$check_numbers AND $checl_letters <br>";
-        if($check_length == 1 ){
+        if($check_length == 1 && $check_numbers == true ){
+            echo "<br><h1> the length return $check_length AND contain number $check_numbers </h1>  <br>";  
+
             return $this->__get('password');
+
         }else {
             echo "<br> It is not Valid Password <br>";
         }
