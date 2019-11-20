@@ -54,7 +54,7 @@ class Registration{
         $database = DB::create_connection(config('dbhost'),config('dbuser'),config('dbpass'),config('dbname'));
         $email = $this->__get('email');
         echo "<br>";
-        echo $email;
+        // echo $email;
         $result =$database->read('users',['email'],["email = '$email'"]);
         if($result->num_rows == 1){
             return 1;
@@ -88,10 +88,25 @@ class Registration{
             }
         }
     }
+    /**
+     * method check_email it does n't take any parameter 
+     * it get the email by using the getter in registration class
+     * and check on it and return the email 
+     */
+    public function check_email(){
+        $emailBeforeCheck = $this->__get('email');
+        $email = filter_var($emailBeforeCheck ,FILTER_VALIDATE_EMAIL);
+        echo "Hello from check email method <br>";
+        echo "<br>$email </br>";
+        return $email;
+    }
     public function check_user_data(){
         $username = $this->__get('username');
-        $email = $this->__get('email');
+        $email = $this->check_email();
+        echo $email;
         $password = $this->__get('password');
+        // password_hash($password,PASSWORD_DEFAULT);
+        // echo $password;
         $dobBeforeEdite = $this->__get('dob');
         $dob = date('Y-m-d',strtotime($dobBeforeEdite));
         $country = $this->__get('country');
@@ -125,7 +140,7 @@ class Registration{
                 <input type="text" name="username" placeholder="User Name" require>
             </div>
             <div>
-                <input type="email" name="email"placeholder="Email" require >
+                <input type="text" name="email"placeholder="Email" require >
             </div>
             <div>
                 <input type="password" name="password" placeholder="password" require>
