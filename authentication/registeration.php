@@ -68,7 +68,7 @@ class Registration{
         $password = $this->__get('password');
         $dobBeforeEdite = $this->__get('dob');
         $dob = date('Y-m-d',strtotime($dobBeforeEdite));
-        echo $dob;
+        // echo $dob;
         $country = $this->__get('country');
         if($resultForEmail == 0 && $resultForUsername == 0){
             $check = $this->check_user_data();
@@ -95,21 +95,45 @@ class Registration{
      */
     public function check_length_of_password(){
         $emailBeforeCheck = $this->__get('password');
-        if(count($emailBeforeCheck) == 8)
+        if(strlen($emailBeforeCheck) == 8)
         {
+            
+            echo "<br> hello from check length it is OK <br>";
             return 1;
         }else{
+            echo "<br> It is NOT OK <br>";
             return 0;
+
         }
     }
     /**
      * check_containing_number_in_password method check if the password contain 
      * numbers and return int 
      */
-    public function check_containing_number_in_password(){
-        $passwordBeforeCheck = $this->__get('password'); 
-        $result = preg_match("^[0-9]+$" ,$passwordBeforeCheck);
-        return $result;
+    // public function check_containing_number_in_password(){
+    //     $passwordBeforeCheck = $this->__get('password'); 
+    //     $result = preg_match("^[0-9]+$" ,$passwordBeforeCheck);
+    //     echo "<br> hello from check numbers";
+    //     return $result;
+    // }
+    // public function check_containing_letters_in_password(){
+    //     $passwordBeforeCheck = $this->__get('password');
+    //     $result = preg_match("[^a-zA-Z\d]",$passwordBeforeCheck);
+    //     echo "<br> hello from check letters <br>";
+    //     return $result;
+    // }
+    public function check_password(){
+        $check_length = $this->check_length_of_password();
+        // $checl_letters = $this->check_containing_letters_in_password();
+        // $check_numbers = $this->check_containing_number_in_password();
+        echo $check_length ;
+        echo "<br>";
+        // echo "$check_numbers AND $checl_letters <br>";
+        if($check_length == 1 ){
+            return $this->__get('password');
+        }else {
+            echo "<br> It is not Valid Password <br>";
+        }
     }
     /**
      * method check_email it does n't take any parameter 
@@ -127,13 +151,14 @@ class Registration{
         $username = $this->__get('username');
         $email = $this->check_email();
         echo $email;
-        $password = $this->__get('password');
+        $password = $this->check_password();
+        // $password = $this->__get('password');
         // password_hash($password,PASSWORD_DEFAULT);
         // echo $password;
         $dobBeforeEdite = $this->__get('dob');
         $dob = date('Y-m-d',strtotime($dobBeforeEdite));
         $country = $this->__get('country');
-        echo "Hello from check method";
+        // echo "Hello from check method";
         if(!empty($username)&& !empty($email)&& !empty($password) && !empty($dob)&& !empty($country)
             && !is_null($username)&& !is_null($email) && !is_null($password)&& !is_null($dob)
             && !is_null($country))
